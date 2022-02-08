@@ -1,3 +1,4 @@
+
 class Buttons {
   //instance variables
   PVector pos;
@@ -11,27 +12,27 @@ class Buttons {
   PImage[] buttons;
 
   Buttons(String pre, String suf, float x, float y, float w, float h) {
-    //constructor 
+    //constructor
     pos = new PVector(x, y);
     size = new PVector(w, h);
     prefix = pre;
     suffix = suf;
     buttons = new PImage[2];
-    buttons[0] = loadImage(prefix+"Unhovered"+suffix);
-    buttons[1] = loadImage(prefix+"Hovered"+suffix);
-
+    buttons[0] = loadImage(prefix+"_Unhovered"+suffix);
+    buttons[1] = loadImage(prefix+"_Hovered"+suffix);
   }
 
   Buttons(String pre, String suf, float x, float y, float w, float h, float fs, String txt) {
-    //constructor 
+    //constructor
     pos = new PVector(x, y);
     size = new PVector(w, h);
     fontSize = fs;
+    text = txt;
     prefix = pre;
     suffix = suf;
     buttons = new PImage[2];
-    buttons[0] = loadImage(prefix+"Unhovered"+suffix);
-    buttons[1] = loadImage(prefix+"Hovered"+suffix);
+    buttons[0] = loadImage(prefix+"_Unhovered"+suffix);
+    buttons[1] = loadImage(prefix+"_Hovered"+suffix);
   }
 
   void show() {

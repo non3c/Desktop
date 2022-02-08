@@ -1,10 +1,14 @@
+import processing.javafx.*;
+
 int hour = hour();
 int minute = minute();
 int second = second();
 int WallpaperSize;
 int randomWP;
+int randomTBColor;
 
-
+boolean hadPressed;
+boolean mouseReleased;
 
 PFont Montserrat;
 PFont Supermercado;
@@ -15,6 +19,9 @@ void setup() {
   //textMode(SHAPE);
   background(#ffffff);
   WallpaperSize = 3;
+  randomTBColor = int(random(0, 2));
+
+
   Wallpapers = new PImage[WallpaperSize];
 
   for (int i = 0; i < WallpaperSize; i ++ ) {
@@ -31,9 +38,15 @@ void draw() {
   hour = hour();
   minute = minute();
   second = second();
-  image(Wallpapers[randomWP], 0, 0);
+  image(Wallpapers[randomWP], 0, 0, width, height);
   drawTime();
   taskBar();
+
+  if (mousePressed) hadPressed = true;
+  if (hadPressed &&!mousePressed) {
+    mouseReleased = true;
+    hadPressed = false;
+  } else mouseReleased = false;
 }
 
 void drawTime() {
@@ -73,6 +86,12 @@ void drawTime() {
 
 void taskBar() {
   noStroke();
-  fill(#121212, 250);
-  rect(0, displayHeight-40, displayWidth, 40);
+
+  if (randomTBColor == 0) {
+    fill(#121212, 200);
+    rect(0, displayHeight-42, displayWidth, 42);
+  } else if (randomTBColor == 1) {
+    fill(#F2F2F2, 200);
+    rect(0, displayHeight-42, displayWidth, 42);
+  }
 }
