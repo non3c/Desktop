@@ -14,6 +14,8 @@ PFont Supermercado;
 PFont Calibri;
 PImage[] Wallpapers;
 
+ArrayList<Tabs> tabsList;
+
 
 
 Buttons startIcon;
@@ -32,6 +34,7 @@ void setup() {
   background(#ffffff);
   WallpaperSize = 5;
   Wallpapers = new PImage[WallpaperSize];
+  tabsList = new ArrayList<Tabs>();
 
   startIcon = new Buttons("Icons/TaskBar/WindowsIcon/Windows", ".png", 24, displayHeight-20, 48, 40);
   searchIcon = new Buttons("Icons/TaskBar/SearchIcon/Search", ".png", 72, displayHeight-20, 48, 40);
@@ -50,7 +53,10 @@ void setup() {
   Supermercado = createFont("Fonts/SupermercadoOne-Regular.ttf", 128);
   Calibri = createFont("Fonts/Calibri.ttf", 128);
   randomWP = int(random(-1, WallpaperSize));
+
+  tabsList.add(new startMenu());
 }
+
 void draw() {
 
   textAlign(CENTER);
@@ -60,7 +66,7 @@ void draw() {
   image(Wallpapers[randomWP], width/2, height/2, width, height);
   drawTime();
   taskBarShow();
-  taskBarAct()'
+  taskBarAct();
 
 
   if (mousePressed) hadPressed = true;
@@ -105,6 +111,7 @@ void drawTime() {
   }
 }
 
+
 void taskBarShow() {
   noStroke();
   fill(#dad9df);
@@ -119,7 +126,6 @@ void taskBarShow() {
 }
 
 void taskBarAct() {
-  if (startButton.clicked()){
-    
+  if (startIcon.clicked) {
   }
 }
