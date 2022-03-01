@@ -1,4 +1,16 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 import processing.javafx.*;
+
+Minim minim;
+AudioPlayer music1;
+
+PGraphics drawTaskbar;
 
 int hour = hour();
 int minute = minute();
@@ -15,7 +27,7 @@ PFont Calibri;
 PImage[] Wallpapers;
 
 ArrayList<Tabs> tabsList;
-
+int STARTMENU, BROWSERTAB;
 
 
 Buttons startIcon;
@@ -35,6 +47,12 @@ void setup() {
   WallpaperSize = 5;
   Wallpapers = new PImage[WallpaperSize];
   tabsList = new ArrayList<Tabs>();
+  
+  minim = new Minim(this);
+
+  drawTaskbar = createGraphics(width, 40);
+  
+  
 
   startIcon = new Buttons("Icons/TaskBar/WindowsIcon/Windows", ".png", 24, displayHeight-20, 48, 40);
   searchIcon = new Buttons("Icons/TaskBar/SearchIcon/Search", ".png", 72, displayHeight-20, 48, 40);
@@ -55,10 +73,15 @@ void setup() {
   randomWP = int(random(-1, WallpaperSize));
 
   tabsList.add(new startMenu());
+  
+  
+  
+  //GLOBAL VARIABLES
+  
 }
 
 void draw() {
-
+  imageMode(CENTER);
   textAlign(CENTER);
   hour = hour();
   minute = minute();
@@ -67,6 +90,7 @@ void draw() {
   drawTime();
   taskBarShow();
   taskBarAct();
+  image(drawTaskbar, 9, 30); 
 
 
   if (mousePressed) hadPressed = true;
@@ -113,9 +137,12 @@ void drawTime() {
 
 
 void taskBarShow() {
-  noStroke();
-  fill(#dad9df);
-  rect(0, displayHeight-40, displayWidth, 40);
+  drawTaskbar.beginDraw();
+  drawTaskbar.filter(BLUR, 3);
+  drawTaskbar.noStroke();
+  drawTaskbar.fill(#dad9df);
+  drawTaskbar.rect(0, displayHeight-40, displayWidth, 40, 200);
+  drawTaskbar.endDraw();
   startIcon.show();
   searchIcon.show();
   cortanaIcon.show();
@@ -127,5 +154,6 @@ void taskBarShow() {
 
 void taskBarAct() {
   if (startIcon.clicked) {
+    tabsList.get(0).show(#dddddd, 200);
   }
 }
