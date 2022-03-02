@@ -8,7 +8,7 @@ class startMenu extends Tabs{
   }
 
   void show() {
-    super.show(#e4dee3, 230);
+    super.show(#e4dee3, 230, false);
   }
 
   void act() {

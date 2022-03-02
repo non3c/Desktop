@@ -47,11 +47,8 @@ void setup() {
   WallpaperSize = 5;
   Wallpapers = new PImage[WallpaperSize];
   tabsList = new ArrayList<Tabs>();
-  
-  minim = new Minim(this);
 
-  drawTaskbar = createGraphics(width, 40);
-  
+  minim = new Minim(this);
   
 
   startIcon = new Buttons("Icons/TaskBar/WindowsIcon/Windows", ".png", 24, displayHeight-20, 48, 40);
@@ -73,11 +70,10 @@ void setup() {
   randomWP = int(random(-1, WallpaperSize));
 
   tabsList.add(new startMenu());
-  
-  
-  
+
+
+
   //GLOBAL VARIABLES
-  
 }
 
 void draw() {
@@ -90,7 +86,7 @@ void draw() {
   drawTime();
   taskBarShow();
   taskBarAct();
-  image(drawTaskbar, 9, 30); 
+
 
 
   if (mousePressed) hadPressed = true;
@@ -137,12 +133,11 @@ void drawTime() {
 
 
 void taskBarShow() {
-  drawTaskbar.beginDraw();
-  drawTaskbar.filter(BLUR, 3);
-  drawTaskbar.noStroke();
-  drawTaskbar.fill(#dad9df);
-  drawTaskbar.rect(0, displayHeight-40, displayWidth, 40, 200);
-  drawTaskbar.endDraw();
+
+  noStroke();
+  fill(#dad9df);
+  rect(0, displayHeight-40, displayWidth, displayHeight);
+
   startIcon.show();
   searchIcon.show();
   cortanaIcon.show();
@@ -154,6 +149,6 @@ void taskBarShow() {
 
 void taskBarAct() {
   if (startIcon.clicked) {
-    tabsList.get(0).show(#dddddd, 200);
+    tabsList.get(0).show(#dddddd, 200, false);
   }
 }
